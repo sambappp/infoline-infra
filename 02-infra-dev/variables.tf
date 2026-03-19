@@ -2,7 +2,7 @@
 variable "project_name" {
   description = "name of the project"
   type        = string
-  default     = "Infoline"
+  default     = "infoline"
 }
 
 variable "location" {
@@ -14,6 +14,6 @@ variable "location" {
 variable "environment" {
   description = "environment name (e.g., dev, staging, prod)"
   type        = string
-  default     = "Dev"
+  default     = "dev"
 }
 
