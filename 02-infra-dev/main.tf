@@ -22,4 +22,27 @@ module "rg_dev" {
   location     = var.location
 }
 
+module "sa_tfstate" {
+  source                   = "../01-modules/02-sa-tfstate-dev"
+  project_name             = var.project_name
+  resource_group_name      = module.rg_dev.rg_output
+  environment              = var.environment
+  location                 = var.location
+  account_tier             = var.account_tier
+  account_replication_type = var.account_replication_type
+
+  depends_on = [module.rg_dev]
+
+}
+
+resource "azurerm_storage_container" "ctrbackendtfstate" {
+  name                  = "ctrbackendtfstate"
+  storage_account_id    = module.sa_tfstate.sa_output
+  container_access_type = "private"
+  depends_on            = [module.sa_tfstate]
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
