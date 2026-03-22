@@ -6,6 +6,12 @@ terraform {
     }
 
   }
+  backend "azurerm" {
+    resource_group_name  = "rg_infoline_dev"
+    storage_account_name = "sainfolinetfstatedev"
+    container_name       = "ctrbackendtfstate"
+    key                  = "terraform.tfstate"
+  }
 
 
 }
